@@ -20,3 +20,5 @@ Here are examples of syntactically valid calls to mygrep:
 * mygrep "printf (" lab1.c
 * cat lab1.c | mygrep printf
 * mygrep testing (read from stdin, use ctrl-d to terminate input)
+* mygrep test lab1.c -i
+* mygrep test lab1.c -n
