@@ -3,12 +3,13 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <getopt.h>
-#include "rw.h"
+#include "rw.h"   // include the rw custom header file
 
 #define SLOWNESS 30000
 #define INVALID_ACCNO -99999
 
-account account_list[SIZE];		// global shared data structure: readers and writers will be accessing concurrently.
+// global shared data structure: readers and writers will be accessing concurrently.
+account account_list[SIZE];
 
 pthread_mutex_t r_lock = PTHREAD_MUTEX_INITIALIZER;			// read lock: shared only between readers
 pthread_mutex_t rw_lock = PTHREAD_MUTEX_INITIALIZER;		// read-write lock: shared between readers and writers
@@ -16,15 +17,14 @@ int read_count = 0;											                // keeps track of number of reader
 
 // sleep function
 void rest() {
-    usleep(SLOWNESS * (rand() % 1));
+  usleep(SLOWNESS * (rand() % 1));
 }
 
-/* writer thread - will update the account_list data structure.
-   takes as argument the seed for the srand() function.
-*/
 
+// writer thread - will update the account_list data structure.
+// takes as argument the seed for the srand() function.
 void * writer_thr(void * arg) {
-	printf("Writer thread ID %ld\n", pthread_self());
+  printf("Writer thread ID %ld\n", pthread_self());
 	srand((unsigned int)(intptr_t) &arg);		// set random number seed for this writer
 
 	int i, j;
@@ -54,8 +54,11 @@ void * writer_thr(void * arg) {
 	   number with the value stored in update_acc[j].
 	*/
 
-	int temp_accno = 0;  // used for storing the accno of account_list[] before invalidating it
-  float temp_balance = 0; // used for storing previous balance of account_list[], which is used when printing to the writer log file
+  // used for storing the accno of account_list[] before invalidating it
+	int temp_accno = 0;
+
+  // used for storing previous balance of account_list[], which is used when printing to the writer log file
+  float temp_balance = 0;
 
   // the writer thread will now update the shared account_list data structure
   for (j = 0; j < WRITE_ITR;j++) {
@@ -101,10 +104,9 @@ void * writer_thr(void * arg) {
   return NULL;
 }
 
-/* reader thread - will read the account_list data structure.
-   takes as argument the seed for the srand() function.
-*/
 
+// reader thread - will read the account_list data structure.
+// takes as argument the seed for the srand() function.
 void * reader_thr(void *arg) {
   printf("Reader thread ID %ld\n", pthread_self());
   srand((unsigned int)(intptr_t) &arg);   // set random number seed for this reader
@@ -146,6 +148,7 @@ void * reader_thr(void *arg) {
 
   // the reader thread will now to read the shared account_list data structure
   for (j = 0; j < READ_ITR; j++) {
+
     // now read the shared data structure
     found = FALSE;
     pthread_mutex_lock(&r_lock);  // lock read critical section
@@ -175,6 +178,7 @@ void * reader_thr(void *arg) {
   return NULL;
 }
 
+
 // populate the shared account_list data structure
 void create_testset() {
 	time_t t;
@@ -187,18 +191,19 @@ void create_testset() {
 	return;
 }
 
-/* if either or both the command line arguments are missing or not integers > 0, then the program should print
-   the usage message and abort */
 
+// if either or both the command line arguments are missing or not integers > 0, then the program should print
+// the usage message and abort
 void usage(char *str) {
 	printf("Usage: %s -r <NUM_READERS> -w <NUM_WRITERS>\n", str);
 	abort();
 }
 
-//  checks if option argument is an integer; returns 0 if it not an integer, 1 if it is
+
+// checks if option argument is an integer; returns 0 if it not an integer, 1 if it is
 int is_integer(char *str) {
   while (*str != '\0') {
-    //  numbers 48 through 57 in ASCII represent 0 through 9. the below statement checks if the current character is not a digit.
+    // numbers 48 through 57 in ASCII represent 0 through 9. the below statement checks if the current character is not a digit.
     if (*str <= 47 || *str >= 58) return 0;
     ++str;
   }
@@ -223,9 +228,11 @@ int main(int argc, char *argv[]) {
 	   For reference on getopt(), see "man getopt(3)"
   */
 
-  if (argc != 5) usage(*argv);  // determines if correct number of arguments were entered
+  // determines if correct number of arguments were entered
+  if (argc != 5) usage(*argv);
 
-  int opt = 0;  // keeps track of options entered
+  // keeps track of options entered
+  int opt = 0;
 
   while ((opt = getopt(argc, argv, "r:w:")) != -1) {  // assign args until no more options are present
     switch (opt) {
