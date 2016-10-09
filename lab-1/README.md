@@ -10,7 +10,7 @@ The purpose of lab 1 is to duplicate the functionality of the Linux/UNIX "grep" 
 *Note* I named my program "lab1" instead of "mygrep".
 
 The syntax for mygrep is:
-mygrep STRING '[FILE]' (the file argument is optional). If no argument is given, the program will read from standard input.
+mygrep STRING \[FILE\] (the file argument is optional). If no argument is given, the program will read from standard input.
 
 ##Examples
 Here are examples of syntactically valid calls to mygrep:
