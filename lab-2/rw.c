@@ -36,7 +36,7 @@ void * writer_thr(void * arg) {
 
 	// first create a random data set of account updates
 	for (i = 0; i < WRITE_ITR; i++) {
-    
+
     // a random  number in the range [0, SIZE)
     r_idx = rand() % SIZE;
 
@@ -54,10 +54,10 @@ void * writer_thr(void * arg) {
 		pthread_exit(&errno);
 	}
 
-	/*   The writer thread will now to update the shared account_list data structure
+  /* The writer thread will now to update the shared account_list data structure
      for each entry 'j' in the update_acc[] array, it will find the corresponding
      account number in the account_list array and update the balance of that account
-     number with the value stored in update_acc[j].   */
+     number with the value stored in update_acc[j]. */
 
   // used for storing the accno of account_list[] before invalidating it
   int temp_accno = 0;
@@ -79,7 +79,7 @@ void * writer_thr(void * arg) {
 
         if (account_list[i].accno == update_acc[j].accno) {
 
-          /*  You MUST FIRST TEMPORARILY INVALIDATE the accno by setting account_list[i] = INVALID_ACCNO;
+          /* You MUST FIRST TEMPORARILY INVALIDATE the accno by setting account_list[i] = INVALID_ACCNO;
           before making any updates to the account_list[i].balance. Once the account balance is updated,
           you MUST put the rest() call in the appropriate place before going for update_acc[j+1].
 
@@ -88,7 +88,8 @@ void * writer_thr(void * arg) {
           fprintf(fd, "Account number = %d [%d]: old balance = %6.2f, new balance = %6.2f\n",
                             				account_list[i].accno, update_acc[j].accno, account_list[i].balance, update_acc[j].balance);
 
-          additionally, your code must also introduce checks/test to detect possible corruption due to race condition from CS violations. */
+          additionally, your code must also introduce checks/test to detect possible
+          corruption due to race condition from CS violations. */
 
           temp_balance = account_list[i].balance; // store previous account balance
           temp_accno = account_list[i].accno; // save current accno before invalidation
@@ -122,6 +123,7 @@ void * writer_thr(void * arg) {
 
 // reader thread - will read the account_list data structure.
 // takes as argument the seed for the srand() function.
+
 void * reader_thr(void *arg) {
 
   printf("Reader thread ID %ld\n", pthread_self());
@@ -212,6 +214,7 @@ void * reader_thr(void *arg) {
 
 
 // populate the shared account_list data structure
+
 void create_testset() {
   time_t t;
   srand(time(&t));
@@ -227,6 +230,7 @@ void create_testset() {
 
 // if either or both the command line arguments are missing or not integers > 0, then the program should print
 // the usage message and abort
+
 void usage(char *str) {
   printf("Usage: %s -r <NUM_READERS> -w <NUM_WRITERS>\n", str);
   abort();
@@ -234,6 +238,7 @@ void usage(char *str) {
 
 
 // checks if option argument is an integer; returns 0 if it not an integer, 1 if it is
+
 int is_integer(char *str) {
   while (*str != '\0') {
 
