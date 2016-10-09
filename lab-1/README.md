@@ -3,8 +3,8 @@ The purpose of lab 1 is to duplicate the functionality of the Linux/UNIX "grep" 
 
 ##Program guidelines:
 1. it does not need to accept any options (extra credit option)
-	..* the option "-i" or "--ignore-case" ignores the the casing of the search string, meaning that it searches for both upper and lower-case variations
-	..* the option "-n" or "--line-number" adds the line that the match was found on to the output
+ * the option "-i" or "--ignore-case" ignores the the casing of the search string, meaning that it searches for both upper and lower-case variations
+ * the option "-n" or "--line-number" adds the line that the match was found on to the output
 2. it will be used for a string, not a regular expression
 3. it only needs to handle one file argument.
 
