@@ -9,7 +9,7 @@ The purpose of lab 1 is to duplicate the functionality of the Linux/UNIX "grep" 
 3. it only needs to handle one file argument.
 
 ##Syntax
-*Note* I named my program "lab1" instead of "mygrep".
+*Note: I named my program "lab1" instead of "mygrep".*
 
 The syntax for mygrep is:
 **mygrep STRING \[FILE\] \[OPTION(s)\]** (the file argument is optional). If no argument is given, the program will read from standard input.
