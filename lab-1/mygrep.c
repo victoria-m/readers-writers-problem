@@ -7,7 +7,7 @@
 #define BUFF_SIZE 512
 #define MAX_ARGS 4
 
-// How to run the program: ./lab1 STRING FILE [OPTION(s)]
+// How to run the program: ./mygrep STRING FILE [OPTION(s)]
 
 // required prototypes:
 int grep_stream(FILE *fpntr, char *string, char *file_pathname);  // returns 0 if string not found, 1 if found
