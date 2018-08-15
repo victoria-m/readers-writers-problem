@@ -17,7 +17,7 @@
 If no argument is given, the program will read from standard input.
 
 ## Examples
-Syntactically valid calls to mygrep:
+Syntactically valid calls to `mygrep`:
 * mygrep printf lab1.c
 * mygrep "printf (" lab1.c
 * cat lab1.c | mygrep printf
