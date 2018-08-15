@@ -1,7 +1,7 @@
 # mygrep
 
 ## Summary
-mygrep duplicates the functionality of the Linux/UNIX "grep" command. grep is a command that searches one or more files for lines that contain a given string/pattern, and prints those lines out. This program only duplicates a subset of the grep command functionality. The program also takes in options such as ignore case and line number.
+`mygrep` duplicates the functionality of the Linux/UNIX "grep" command. grep is a command that searches one or more files for lines that contain a given string/pattern, and prints those lines out. This program only duplicates a subset of the grep command functionality. The program also takes in options such as ignore case and line number.
 
 ## Program Guidelines:
 1. It does not need to accept any options (extra credit option)
@@ -12,7 +12,7 @@ mygrep duplicates the functionality of the Linux/UNIX "grep" command. grep is a 
 
 ## Syntax
 
-**mygrep STRING \[FILE\] \[OPTION(s)\]** (the file argument is optional).
+`mygrep STRING \[FILE\] \[OPTION(s)\]` (the file argument is optional).
 
 If no argument is given, the program will read from standard input.
 
