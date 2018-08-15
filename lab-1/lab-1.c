@@ -124,7 +124,6 @@ char *get_next_line(FILE *fpntr) {
 
 
 // additional functions:
-
 FILE *open_file(char *file_pathname, FILE *fpntr) {
   fpntr = fopen(file_pathname, "r");
 
